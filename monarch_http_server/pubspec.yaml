@@ -1,6 +1,6 @@
 name: monarch_http_server
 description: Utilities for http servers.
-version: 0.1.0
+version: 0.1.1
 publish_to: none
 
 environment:
@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   shelf: ^1.1.0
+  stack_trace: ^1.10.0
   monarch_utils: ^0.1.0
 
 dev_dependencies:

@@ -1,25 +1,35 @@
-import 'package:monarch_utils/log.dart';
+import 'dart:async';
+import 'package:pedantic/pedantic.dart';
+
 import 'package:shelf/shelf.dart';
+import 'package:stack_trace/stack_trace.dart';
+import 'package:monarch_utils/log.dart';
 
 final _logger = Logger('Middleware');
 
-Middleware logResponseInfo() => (Handler innerHandler) {
+Middleware logResponseInfoAndCallHandler() => (Handler innerHandler) {
       return (Request request) async {
-        Response response;
         final watch = Stopwatch()..start();
-        try {
-          response = await innerHandler(request);
-        } catch (e) {
-          if (e is HijackException) rethrow;
-          _logger.severe(
-              'error handling request ${_formatRequest(request)} ');
-          rethrow;
-        }
+        final completer = Completer<Response>();
+
+        unawaited(Chain.capture(() async {
+          final res = await innerHandler(request);
+          completer.complete(res);
+        }, onError: (e, chain) {
+          if (e is HijackException) throw e;
+          _logger.severe('error-handling-request ${_formatRequest(request)}', e,
+              chain.terse);
+          completer.complete(Response.internalServerError());
+        }));
+
+        final response = await completer.future;
         watch.stop();
+
         _logger.info('response '
             'duration=${watch.duration.inMilliseconds}ms '
             'status_code=${response.statusCode} '
             '${_formatRequest(request)} ');
+
         return response;
       };
     };
