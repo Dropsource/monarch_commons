@@ -1,6 +1,6 @@
 name: monarch_http_client
 description: Utilities for http clients.
-version: 0.0.1
+version: 0.1.0
 publish_to: none
 
 environment:
