@@ -1,3 +1,6 @@
+## 0.1.2 - 2020-04-15
+- Add user directory utils
+
 ## 0.1.1
 - Export src/process_run_helper.dart
 
