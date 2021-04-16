@@ -1,3 +1,6 @@
+## 0.1.3 - 2020-04-16
+- Change ProcessRunHelper.getOutputMessage to improve log formatting
+
 ## 0.1.2 - 2020-04-15
 - Add user directory utils
 
