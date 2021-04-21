@@ -22,7 +22,7 @@ abstract class LongRunningCli<T> {
   void _listenForUserQuit() {
     ProcessSignal.sigint.watch().listen((signal) async {
       if (signal == ProcessSignal.sigint) {
-        await terminate(userTerminatedExitCode);
+        terminate(userTerminatedExitCode);
       }
     });
   }
@@ -33,7 +33,7 @@ abstract class LongRunningCli<T> {
 
   /// Call this function when the user has requested termination.
   /// It will terminate any in-progress work and then `finish`.
-  Future<void> terminate(T exitCode) async {
+  void terminate(T exitCode) async {
     await willTerminate();
     finish(exitCode);
   }
