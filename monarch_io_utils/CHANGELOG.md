@@ -1,7 +1,11 @@
-## 0.1.3 - 2020-04-16
+## 0.1.4 - 2021-04-21
+- LongRunningCli
 - Change ProcessRunHelper.getOutputMessage to improve log formatting
 
-## 0.1.2 - 2020-04-15
+## 0.1.3 - 2021-04-16
+- Change ProcessRunHelper.getOutputMessage to improve log formatting
+
+## 0.1.2 - 2021-04-15
 - Add user directory utils
 
 ## 0.1.1

@@ -37,11 +37,13 @@ class ProcessRunHelper {
 
   String getOutputMessage() {
     return '''
-command-output exit_code=${result.exitCode} success=$isSuccess command="$prettyCmd"
+command-output exit_code=${result.exitCode} success=$isSuccess 
+command="$prettyCmd"
+working-directory="${workingDirectory ?? '(not provided)'}"
 stdout:
-$stdout
+${stdout.isEmpty ? '(blank)' : stdout}
 
 stderr:
-$stderr''';
+${stderr.isEmpty ? '(blank)' : stderr}''';
   }
 }
