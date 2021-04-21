@@ -1,3 +1,6 @@
+## 0.1.5 - 2021-04-21
+- Export src/long_running_cli.dart
+
 ## 0.1.4 - 2021-04-21
 - LongRunningCli
 - Change ProcessRunHelper.getOutputMessage to improve log formatting

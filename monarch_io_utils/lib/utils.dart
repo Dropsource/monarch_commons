@@ -5,3 +5,4 @@ export 'src/platform_utils.dart';
 export 'src/process_utils.dart';
 export 'src/process_run_helper.dart';
 export 'src/user_directory.dart';
+export 'src/long_running_cli.dart';
