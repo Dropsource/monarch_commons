@@ -1,3 +1,7 @@
+## 0.1.6 - 2021-04-21
+- Make LongRunningCli's terminate and willTerminate return Futures so
+  implementations can do async termination before completion.
+
 ## 0.1.5 - 2021-04-21
 - Export src/long_running_cli.dart
 
