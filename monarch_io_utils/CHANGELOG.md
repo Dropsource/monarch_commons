@@ -1,3 +1,6 @@
+## 0.1.8 - 2021-04-29
+- Add T to futureForPlatform
+
 ## 0.1.7 - 2021-04-21
 - Tweak
 

@@ -27,6 +27,10 @@ void main() {
         i--;
       });
       expect(i, 1);
+
+      // when function returns an explicit bool
+      var flag = functionForPlatform<bool>(macos: () => true, windows: () => false);
+      expect(flag, isTrue);
     });
 
     test('futureForPlatform', () async {
