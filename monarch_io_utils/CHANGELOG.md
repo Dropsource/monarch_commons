@@ -1,3 +1,6 @@
+## 0.1.10 - 2021-04-30
+- Export src/flutter_sdk_id.dart
+
 ## 0.1.9 - 2021-04-30
 - Add FlutterSdkId class and tests
 
