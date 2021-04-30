@@ -1,3 +1,6 @@
+## 0.1.9 - 2021-04-30
+- Add FlutterSdkId class and tests
+
 ## 0.1.8 - 2021-04-29
 - Add T to futureForPlatform
 
