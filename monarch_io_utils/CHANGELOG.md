@@ -1,5 +1,6 @@
-## 0.1.11 - 2021-05-03
+## 0.1.12 - 2021-05-03
 - Parse FlutterSdkId from `flutter --version`
+- Add duration to LongRunningClic
 
 ## 0.1.10 - 2021-04-30
 - Export src/flutter_sdk_id.dart

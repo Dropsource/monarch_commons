@@ -4,17 +4,20 @@ import 'package:meta/meta.dart';
 
 abstract class LongRunningCli<T> {
   late Completer<T> _exitCompleter;
+  late Stopwatch _stopwatch; // dart.core.Stopwatch, not monarch_utils.Stopwatch.
 
   /// Returns a future that completes when the long-running
   /// work has exited.
   Future<T> get exit => _exitCompleter.future;
   bool get hasExited => _exitCompleter.isCompleted;
+  Duration get duration => _stopwatch.elapsed;
 
   T get userTerminatedExitCode;
 
   /// Runs the long running CLI task, command or process.
   void run() {
     _exitCompleter = Completer();
+    _stopwatch = Stopwatch()..start();
     _listenForUserQuit();
     didRun();
   }
@@ -46,6 +49,7 @@ abstract class LongRunningCli<T> {
   void finish(T exitCode) {
     if (!hasExited) {
       _exitCompleter.complete(exitCode);
+      _stopwatch.stop();
     }
   }
 
