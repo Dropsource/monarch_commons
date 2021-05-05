@@ -1,13 +1,17 @@
+import 'dart:convert';
 import 'dart:io';
 import 'process_utils.dart';
 
-class ProcessRunHelper {
+/// Runs a process non-interactively to completion. It is ideal to run shell
+/// or CLI commands that start and run to completion without interaction.
+class CommandRunner {
   final String executable;
   final List<String> arguments;
   final String? workingDirectory;
+  final Encoding encoding;
 
-  ProcessRunHelper(this.executable, this.arguments,
-      {this.workingDirectory, List<int>? successExitCodes}) {
+  CommandRunner(this.executable, this.arguments,
+      {this.workingDirectory, List<int>? successExitCodes, this.encoding = systemEncoding}) {
     if (successExitCodes != null) {
       _successExitCodes = successExitCodes;
     }
@@ -27,9 +31,13 @@ class ProcessRunHelper {
 
   String get prettyCmd => getPrettyCommand(executable, arguments);
 
-  void runSync() {
-    _result = Process.runSync(executable, arguments,
-        workingDirectory: workingDirectory, runInShell: Platform.isWindows);
+  /// Starts the process or command and runs it non-interactively to completion.
+  Future<void> run() async {
+    _result = await Process.run(executable, arguments,
+        workingDirectory: workingDirectory,
+        runInShell: Platform.isWindows,
+        stdoutEncoding:  encoding,
+        stderrEncoding: encoding);
 
     _stdout = _result.stdout;
     _stderr = _result.stderr;
@@ -39,7 +47,7 @@ class ProcessRunHelper {
     return '''
 command-output exit_code=${result.exitCode} success=$isSuccess 
 command="$prettyCmd"
-working-directory="${workingDirectory ?? '(not provided)'}"
+working_directory="${workingDirectory ?? '(not provided)'}"
 stdout:
 ${stdout.isEmpty ? '(blank)' : stdout}
 

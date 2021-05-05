@@ -1,3 +1,8 @@
+## 0.1.13 - 2021-05-05
+- Rename ProcessRunHelper to CommandRunner
+- Add encoding to CommandRunner
+- Make CommandRunner.run async
+
 ## 0.1.12 - 2021-05-03
 - Parse FlutterSdkId from `flutter --version`
 - Add duration to LongRunningClic
