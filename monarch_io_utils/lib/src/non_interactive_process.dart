@@ -2,15 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 import 'process_utils.dart';
 
-/// Runs a process non-interactively to completion. It is ideal to run shell
-/// or CLI commands that start and run to completion without interaction.
-class CommandRunner {
+/// Runs a process non-interactively to completion. It exposes the process
+/// output through convinience getters.
+/// 
+/// It is ideal to run shell or CLI commands that start and run to completion
+/// without interaction.
+class NonInteractiveProcess {
   final String executable;
   final List<String> arguments;
   final String? workingDirectory;
   final Encoding encoding;
 
-  CommandRunner(this.executable, this.arguments,
+  NonInteractiveProcess(this.executable, this.arguments,
       {this.workingDirectory, List<int>? successExitCodes, this.encoding = systemEncoding}) {
     if (successExitCodes != null) {
       _successExitCodes = successExitCodes;
