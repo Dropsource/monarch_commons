@@ -1,4 +1,4 @@
-## 0.1.13 - 2021-05-05
+## 0.2.0 - 2021-05-05
 - Rename ProcessRunHelper to CommandRunner
 - Add encoding to CommandRunner
 - Make CommandRunner.run async
