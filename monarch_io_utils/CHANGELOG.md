@@ -1,3 +1,6 @@
+## 0.2.2 - 2021-05-07
+- Add runSync to NonInteractiveProcess
+
 ## 0.2.1 - 2021-05-05
 - Rename ProcessRunHelper to NonInteractiveProcess
 - Add encoding to NonInteractiveProcess

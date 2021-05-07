@@ -46,6 +46,19 @@ class NonInteractiveProcess {
     _stderr = _result.stderr;
   }
 
+  /// Starts the process or command and runs it non-interactively to completion.
+  /// This is a synchronous call and will block until the child process terminates.
+  void runSync() {
+    _result = Process.runSync(executable, arguments,
+        workingDirectory: workingDirectory,
+        runInShell: Platform.isWindows,
+        stdoutEncoding:  encoding,
+        stderrEncoding: encoding);
+
+    _stdout = _result.stdout;
+    _stderr = _result.stderr;
+  }
+
   String getOutputMessage() {
     return '''
 command-output exit_code=${result.exitCode} success=$isSuccess 
