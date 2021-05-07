@@ -81,6 +81,33 @@ Tools • Dart 2.13.0 (build 2.13.0-211.13.beta)''', 'macos');
         expect(id.channel, 'beta');
         expect(id.operatingSystem, 'macos');
       }
+      {
+        var id = FlutterSdkId.parseFlutterVersionOutput('''
+========
+There is a new version of Flutter or something like that.
+========
+
+Flutter 2.0.6 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 1d9032c7e1 (4 days ago) • 2021-04-29 17:37:58 -0700
+Engine • revision 05e680e202
+Tools • Dart 2.12.3''', 'macos');
+        expect(id.version, '2.0.6');
+        expect(id.channel, 'stable');
+        expect(id.operatingSystem, 'macos');
+      }
+      {
+        var id = FlutterSdkId.parseFlutterVersionOutput('''
+========
+There is a new version of Flutter or something like that.
+========
+Flutter rocks
+Flutter 2.0.6 • channel stable • https://github.com/flutter/flutter.git
+Flutter 2.0.7
+''', 'macos');
+        expect(id.version, '2.0.6');
+        expect(id.channel, 'stable');
+        expect(id.operatingSystem, 'macos');
+      }
     });
 
     test('parseFlutterVersionOutput throws', () {
