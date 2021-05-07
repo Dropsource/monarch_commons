@@ -1,5 +1,8 @@
-## 0.2.2 - 2021-05-07
+## 0.2.3 - 2021-05-07
 - Add runSync to NonInteractiveProcess
+- Pass operatingSystem to FlutterSdkId functions, do not take it from the 
+  running Platform object since a FlutterSdkId object could represent a flutter version
+  from another platform.
 
 ## 0.2.1 - 2021-05-05
 - Rename ProcessRunHelper to NonInteractiveProcess

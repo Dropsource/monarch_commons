@@ -1,6 +1,6 @@
 name: monarch_io_utils
 description: Utilities for dart io and other dart sdk packages.
-version: 0.2.2
+version: 0.2.3
 publish_to: none
 
 environment:

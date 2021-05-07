@@ -3,31 +3,64 @@ import 'package:monarch_io_utils/src/flutter_sdk_id.dart';
 
 void main() {
   group('FlutterSdkId', () {
+    test('toString', () {
+      expect(FlutterSdkId(channel: 'stable', version: '2.0.5', operatingSystem: 'macos').toString(),
+          'flutter_macos_2.0.5-stable');
+      expect(FlutterSdkId(channel: 'dev', version: '2.2.0-10.1.pre', operatingSystem: 'windows').toString(),
+          'flutter_windows_2.2.0-10.1.pre-dev');
+    });
+
+    test('parse', () {
+      {
+        var id = FlutterSdkId.parse('flutter_macos_2.0.5-stable');
+        expect(id.version, '2.0.5');
+        expect(id.channel, 'stable');
+        expect(id.operatingSystem, 'macos');
+      }
+      {
+        var id = FlutterSdkId.parse('flutter_windows_2.2.0-10.1.pre-dev');
+        expect(id.version, '2.2.0-10.1.pre');
+        expect(id.channel, 'dev');
+        expect(id.operatingSystem, 'windows');
+      }
+      {
+        var id = FlutterSdkId.parse('flutter_linux_2.2.333-a+b.pre-beta');
+        expect(id.version, '2.2.333-a+b.pre');
+        expect(id.channel, 'beta');
+        expect(id.operatingSystem, 'linux');
+      }
+    });
+
+    test('parse throws', () {
+      expect(() => FlutterSdkId.parse('flutter_macos_'), throwsArgumentError);
+    });
     test('parseFlutterVersionOutput', () {
       {
         var id = FlutterSdkId.parseFlutterVersionOutput('''
 Flutter 2.0.6 • channel stable • https://github.com/flutter/flutter.git
 Framework • revision 1d9032c7e1 (4 days ago) • 2021-04-29 17:37:58 -0700
 Engine • revision 05e680e202
-Tools • Dart 2.12.3''');
+Tools • Dart 2.12.3''', 'windows');
         expect(id.version, '2.0.6');
         expect(id.channel, 'stable');
+        expect(id.operatingSystem, 'windows');
       }
       {
         var id = FlutterSdkId.parseFlutterVersionOutput('''
 Flutter 2.2.0-10.2.pre • channel beta • https://github.com/flutter/flutter.git
 Framework • revision b5017bf8de (5 days ago) • 2021-04-28 17:09:53 -0700
 Engine • revision 91ed51e05c
-Tools • Dart 2.13.0 (build 2.13.0-211.13.beta)''');
+Tools • Dart 2.13.0 (build 2.13.0-211.13.beta)''', 'macos');
         expect(id.version, '2.2.0-10.2.pre');
         expect(id.channel, 'beta');
+        expect(id.operatingSystem, 'macos');
       }
     });
 
     test('parseFlutterVersionOutput throws', () {
       expect(() => FlutterSdkId.parseFlutterVersionOutput('''
 Unexpected flutter version output
-'''), throwsArgumentError);
+''', 'windows'), throwsArgumentError);
     });
   });
 }
