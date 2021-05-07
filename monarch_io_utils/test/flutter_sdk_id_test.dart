@@ -4,10 +4,36 @@ import 'package:monarch_io_utils/src/flutter_sdk_id.dart';
 void main() {
   group('FlutterSdkId', () {
     test('toString', () {
-      expect(FlutterSdkId(channel: 'stable', version: '2.0.5', operatingSystem: 'macos').toString(),
+      expect(
+          FlutterSdkId(
+                  channel: 'stable', version: '2.0.5', operatingSystem: 'macos')
+              .toString(),
           'flutter_macos_2.0.5-stable');
-      expect(FlutterSdkId(channel: 'dev', version: '2.2.0-10.1.pre', operatingSystem: 'windows').toString(),
+      expect(
+          FlutterSdkId(
+                  channel: 'dev',
+                  version: '2.2.0-10.1.pre',
+                  operatingSystem: 'windows')
+              .toString(),
           'flutter_windows_2.2.0-10.1.pre-dev');
+    });
+
+    test('equals', () {
+      var id01 = FlutterSdkId(
+          channel: 'stable', version: '2.0.5', operatingSystem: 'macos');
+      var id02 = FlutterSdkId(
+          channel: 'stable', version: '2.0.5', operatingSystem: 'macos');
+      expect(id01 == id02, isTrue);
+      expect(id01.hashCode == id02.hashCode, isTrue);
+    });
+
+    test('not equals', () {
+      var id01 = FlutterSdkId(
+          channel: 'stable', version: '2.0.5', operatingSystem: 'windows');
+      var id02 = FlutterSdkId(
+          channel: 'stable', version: '2.0.5', operatingSystem: 'macos');
+      expect(id01 == id02, isFalse);
+      expect(id01.hashCode == id02.hashCode, isFalse);
     });
 
     test('parse', () {
