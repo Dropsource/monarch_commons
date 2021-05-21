@@ -3,7 +3,7 @@ import 'package:path/path.dart' as p;
 import 'platform_utils.dart';
 
 String get userDirectoryEnvironmentVariable =>
-    valueForPlatform(macos: 'HOME', windows: 'USERPROFILE');
+    valueForPlatform(macos: 'HOME', windows: 'USERPROFILE', linux: 'HOME');
 
 String? get userDirectoryPath =>
     Platform.environment[userDirectoryEnvironmentVariable];

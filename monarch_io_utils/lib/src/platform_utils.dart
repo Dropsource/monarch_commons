@@ -1,10 +1,12 @@
 import 'dart:io';
 
-T valueForPlatform<T>({required T macos, required T windows}) {
+T valueForPlatform<T>({required T macos, required T windows, T? linux}) {
   if (Platform.isMacOS) {
     return macos;
   } else if (Platform.isWindows) {
     return windows;
+  } else if (Platform.isLinux && linux != null) {
+    return linux;
   } else {
     throw UnsupportedError(
         'The ${Platform.operatingSystem} platform is not supported');

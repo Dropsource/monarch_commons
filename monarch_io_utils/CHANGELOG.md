@@ -1,3 +1,6 @@
+## 0.2.5 - 2021-05-21
+- Add linux option to valueForPlatform and userDirectory
+
 ## 0.2.4 - 2021-05-07
 - Add runSync to NonInteractiveProcess
 - Pass operatingSystem to FlutterSdkId functions, do not take it from the 
