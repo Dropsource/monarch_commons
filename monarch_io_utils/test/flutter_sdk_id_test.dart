@@ -55,6 +55,12 @@ void main() {
         expect(id.channel, 'beta');
         expect(id.operatingSystem, 'linux');
       }
+      {
+        var id = FlutterSdkId.parse('flutter_macos_2.2.0-unknown');
+        expect(id.version, '2.2.0');
+        expect(id.channel, 'unknown');
+        expect(id.operatingSystem, 'macos');
+      }
     });
 
     test('parse throws', () {
@@ -106,6 +112,17 @@ Flutter 2.0.7
 ''', 'macos');
         expect(id.version, '2.0.6');
         expect(id.channel, 'stable');
+        expect(id.operatingSystem, 'macos');
+      }
+      {
+        var id = FlutterSdkId.parseFlutterVersionOutput('''
+Flutter 2.2.0 • channel unknown • unknown source
+Framework • revision b22742018b (10 days ago) • 2021-05-14 19:12:57 -0700
+Engine • revision a9d88a4d18
+Tools • Dart 2.13.0
+''', 'macos');
+        expect(id.version, '2.2.0');
+        expect(id.channel, 'unknown');
         expect(id.operatingSystem, 'macos');
       }
     });

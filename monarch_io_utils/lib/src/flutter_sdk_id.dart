@@ -36,7 +36,7 @@ class FlutterSdkId extends Object {
   /// ```
   static FlutterSdkId parse(String stringId) {
     var pattern = RegExp(
-        '^flutter_(macos|windows|linux)_(.+)-(stable|beta|dev|master)\$');
+        '^flutter_(macos|windows|linux)_(.+)-(stable|beta|dev|master|unknown)\$');
     if (pattern.hasMatch(stringId)) {
       var match = pattern.firstMatch(stringId)!;
       if (match.groupCount == 3) {
@@ -69,7 +69,7 @@ class FlutterSdkId extends Object {
   static FlutterSdkId parseFlutterVersionOutput(
       String flutterVersionOutput, String operatingSystem) {
     var pattern = RegExp(
-        r'^Flutter\s(.+)\s•\schannel\s(stable|beta|dev|master)\s',
+        r'^Flutter\s(.+)\s•\schannel\s(stable|beta|dev|master|unknown)\s',
         multiLine: true);
     if (pattern.hasMatch(flutterVersionOutput)) {
       var match = pattern.firstMatch(flutterVersionOutput)!;
