@@ -1,5 +1,6 @@
-## 0.2.6 - 2021-05-24
+## 0.2.7 - 2021-05-24
 - Parse "unknown" as a flutter channel due to other tools mangling the flutter channel: https://github.com/leoafarias/fvm/issues/291
+- FlutterChannels constants
 
 ## 0.2.5 - 2021-05-21
 - Add linux option to valueForPlatform and userDirectory

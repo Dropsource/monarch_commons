@@ -1,3 +1,11 @@
+class FlutterChannels {
+  static const stable = 'stable';
+  static const beta = 'beta';
+  static const dev = 'dev';
+  static const master = 'master';
+  static const unknown = 'unknown';
+}
+
 class FlutterSdkId extends Object {
   final String channel;
   final String version;
