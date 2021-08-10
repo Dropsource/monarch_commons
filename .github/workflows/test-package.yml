@@ -1,0 +1,38 @@
+# Flutter actions:
+# https://github.com/marketplace/actions/flutter-action
+
+# Dart actions:
+# https://github.com/dart-lang/setup-dart
+
+# Other workflow yaml samples:
+# - https://github.com/dart-lang/build/blob/master/.github/workflows/dart.yml
+# - https://github.com/dart-lang/setup-dart
+# - https://github.com/dart-lang/markdown/blob/master/.github/workflows/test-package.yml
+
+name: Monarch Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:        
+  test_monarch_io_utils:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - name: Install dependencies
+        working-directory: monarch_io_utils
+        run: dart pub get
+      - name: Analyze project source
+        working-directory: monarch_io_utils
+        run: dart analyze
+      - name: Run tests
+        working-directory: monarch_io_utils
+        run: dart test
