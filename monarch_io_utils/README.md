@@ -1,9 +1,10 @@
 # monarch_io_utils
 
-Utilities for dart io and other dart sdk packages.
+Utilities for `dart:io`, other dart sdk packages and common Monarch types 
+or utility functions.
 
-This package includes utils to use types and functions in `dart:io`. 
-This package may also include utilities for other packages part of the dart sdk.
+The goals of this package are reusability and to keep its own dependencies
+to a minimum. Thus, try to add code that only needs the dart sdk, or very 
+small dependencies.
 
-Initially, this package doesn't have any package dependencies since all
-of its utilities use packages that are part of the dart sdk.
+

@@ -1,3 +1,7 @@
+## 1.0.0 - 2021-11-04
+- Add string utility function `hardWrap`
+- This package is stable, bumping to version 1.0.0
+
 ## 0.2.7 - 2021-05-24
 - Parse "unknown" as a flutter channel due to other tools mangling the flutter channel: https://github.com/leoafarias/fvm/issues/291
 - FlutterChannels constants
