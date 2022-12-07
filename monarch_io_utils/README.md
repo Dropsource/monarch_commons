@@ -1,3 +1,8 @@
+## DO NOT USE
+This package has been moved to the main 
+[monarch repo](https://github.com/Dropsource/monarch), 
+under monarch/packages/monarch_io_utils.
+
 # monarch_io_utils
 
 Utilities for `dart:io`, other dart sdk packages and common Monarch types 
